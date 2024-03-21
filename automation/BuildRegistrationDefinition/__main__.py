@@ -112,6 +112,7 @@ from typing import Dict, List
 import click
 
 from BuildRegistrationDefinition import __title__, __version__
+from security import safe_command
 
 CONTEXT_SETTINGS: dict = dict(help_option_names=["-h", "--help"],)
 
@@ -353,8 +354,7 @@ def _inspect_docker_repo(repo_name: str) -> Dict:
     result: Dict = None
 
     try:
-        completed_process: CompletedProcess = subprocess.run(
-            ["docker", "trust", "inspect", repo_name],
+        completed_process: CompletedProcess = safe_command.run(subprocess.run, ["docker", "trust", "inspect", repo_name],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             check=True,
