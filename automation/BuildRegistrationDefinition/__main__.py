@@ -393,7 +393,7 @@ def _extract_root_key_id(repo_inspect: Dict) -> str:
                     if "ID" in key:
                         return key["ID"]
 
-    print(f"Error: Unable to find ID of Root signing key for targeted repository")
+    print("Error: Unable to find ID of Root signing key for targeted repository")
     return None
 
 
